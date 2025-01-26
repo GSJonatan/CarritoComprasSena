@@ -1,27 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
-class CategoryController extends Controller
+class CategoryapiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $category=Category::all();
-        return view('dashboard.category.index',['category'=>$category]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('dashboard.category.create');
+        $categories =Category::all();
+        return($categories);
     }
 
     /**
@@ -33,8 +26,8 @@ class CategoryController extends Controller
         $category->name=$request->input('name');
         $category->description=$request->input('description');
         $category->state=$request->input('state');
-        $category->save(); 
-        return view("dashboard.category.message",['msg'=>"Categoria Agregada con Exito"]);
+        $category->save();
+        return $category;
     }
 
     /**
@@ -46,35 +39,25 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $category=Category::find($id);
-        return view('dashboard.category.edit',['category'=>$category]);
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         $category=Category::find($id);
         $category->name=$request->input('name');
         $category->description=$request->input('description');
         $category->state=$request->input('state');
         $category->save(); 
-        return view("dashboard.category.message",['msg'=>"Categoria Actualizada con Exito"]);
-
+        return $category;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy(string $id)
     {
         $category=Category::find($id);
         $category->delete();
-        return redirect("dashboard/category");
+        return ("categoría eliminada");
     }
 }

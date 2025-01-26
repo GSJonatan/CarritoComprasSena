@@ -24,11 +24,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//rutas de nuestra app
+// rutas de nuestra app
     Route::resource("/dashboard/category",CategoryController::class);
     Route::resource("/dashboard/article",ArticleController::class);
     Route::resource("/dashboard/person",PersonController::class);
-    //Route::resource("/dashboard/income",IncomeController::class);
+    Route::resource("/dashboard/income",IncomeController::class);
     //Route::resource("/dashboard/income_detail",Income_DetailController::class);
     //Route::resource("/dashboard/sale",SaleController::class);
     //Route::resource("/dashboard/sale_detale",Sale_detailController::class);
